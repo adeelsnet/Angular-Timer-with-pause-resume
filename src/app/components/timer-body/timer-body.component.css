@@ -1,0 +1,22 @@
+.btn-format {
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.timer-format {
+    text-align: center;
+}
+
+.text-format {
+    font-weight: bold;
+    font-size: 4em;
+    margin: 1em 0;
+}
+
+.warning-text {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+    margin: 2em 0;
+    color: red;
+}

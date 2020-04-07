@@ -1,0 +1,16 @@
+.example-full-width,
+button {
+    width: 100%;
+}
+
+.btn-format {
+    color: white;
+    background-color: #007bff;
+    text-transform: uppercase;
+}
+
+.input-format {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+}

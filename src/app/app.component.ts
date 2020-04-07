@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ng-timer';
+  min: number;
+  sec: number;
+  isStartClicked: boolean = true;
+
+  isStartBtnClicked(e){
+    this.isStartClicked = e.isClicked;
+    this.min = e.min;
+    this.sec = e.sec;
+  }
 }
