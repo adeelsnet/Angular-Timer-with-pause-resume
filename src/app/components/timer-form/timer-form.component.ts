@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TimerService } from 'src/app/services/timer.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-timer-form',
@@ -9,8 +10,7 @@ import { TimerService } from 'src/app/services/timer.service';
 export class TimerFormComponent implements OnInit {
 
   isStartClicked: boolean = true;
-  min: number;
-  sec: number;
+
   @Output() startClicked = new EventEmitter();
 
   constructor(public timerService: TimerService) { }
@@ -18,14 +18,17 @@ export class TimerFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  btnStartClicked() {
-    this.startClicked.emit(!this.isStartClicked);
-    if (isNaN(this.min) || isNaN(this.sec)) {
-      this.timerService.min = 0;
-      this.timerService.sec = 60;
+  btnStartClicked(data: NgForm) {
+    if (data.value.minutes === null && data.value.seconds === null) {
+      return;
+    } else if (data.value.minutes <= 0 && data.value.seconds <= 0) {
+      return;
+    } else if (data.value.minutes === null || data.value.seconds === null) {
+      return;
     } else {
-      this.timerService.min = this.min;
-      this.timerService.sec = this.sec;
+      this.startClicked.emit(!this.isStartClicked);
+      this.timerService.min = data.value.minutes;
+      this.timerService.sec = data.value.seconds;
     }
   }
 }

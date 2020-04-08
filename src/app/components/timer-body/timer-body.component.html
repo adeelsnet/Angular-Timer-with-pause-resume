@@ -3,21 +3,21 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-8 timer-format">
-                <p class="text-format">{{clockTimer}}</p>
+                <p class="text-format"><span [ngClass]="totalTime < 59 ? 'warning-color': ' '">{{clockTimer}}</span></p>
             </div>
             <div class="col-2"></div>
         </div>
         <div class="row">
             <div class="col-2"></div>
             <div class="col-4">
-                <button mat-raised-button color="warn" class="btn-format" (click)='pauseBtnClicked()'>Pause</button>
+                <button mat-raised-button color="warn" class="btn-format" (click)='pauseBtnClicked()'>{{pauseBtn}}</button>
             </div>
             <div class="col-4">
-                <button mat-raised-button color="primary" class="btn-format" (click)='startBtnClicked()'>{{startBtn}}</button>
+                <button mat-raised-button color="primary" class="btn-format" (click)='stopBtnClicked()'>Stop</button>
             </div>
             <div class="col-2"></div>
         </div>
-        <div class="row" *ngIf='totalTime < 60'>
+        <div class="row" *ngIf='totalTime < 59'>
             <div class="col-12">
                 <p class="warning-text">Hurry Up time is ticking!!</p>
             </div>

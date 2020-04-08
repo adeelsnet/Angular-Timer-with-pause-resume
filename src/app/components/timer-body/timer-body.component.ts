@@ -11,13 +11,13 @@ export class TimerBodyComponent implements OnInit {
 
 
   isPause: boolean = true;
-  startBtn = 'Start';
+  clockTimer: string = '00 : 00';
+  warning: string;
+  pauseBtn = 'Pause';
+  subscribe: any;
+  totalTime: number;
   min: number;
   sec: number;
-  subscribe: any;
-  clockTimer: string = '00 : 00';
-  totalTime: any;
-  warning: string;
 
   constructor(public timerService: TimerService) { }
 
@@ -31,17 +31,25 @@ export class TimerBodyComponent implements OnInit {
   }
 
   pauseBtnClicked() {
-    let newTime = this.totalTime;
     if (this.isPause) {
       this.isPause = !this.isPause;
+      this.pauseBtn = 'Resume';
       this.subscribe.unsubscribe();
+
+    } else {
+      this.isPause = !this.isPause;
+      this.pauseBtn = 'Pause';
+      this.timerClock();
     }
   }
 
-  startBtnClicked() {
-    if (!this.isPause) {
+  stopBtnClicked() {
+    this.subscribe.unsubscribe();
+    this.clockTimer = '00 : 00';
+    this.totalTime = this.min + this.sec;
+    this.pauseBtn = 'ReStart';
+    if (this.isPause) {
       this.isPause = !this.isPause;
-      this.timerClock();
     }
   }
 
@@ -54,9 +62,9 @@ export class TimerBodyComponent implements OnInit {
       .subscribe(val => {
 
         if (this.totalTime === -1) {
-          console.log(this.totalTime);
           alert('Time is Up!');
           this.subscribe.unsubscribe();
+
         } else {
 
           minutes = Math.floor(this.totalTime / 60);

@@ -1,18 +1,20 @@
 <mat-card class="mat-elevation-z5">
-    <mat-form-field class="example-full-width" appearance='outline'>
-        <mat-label>Minutes</mat-label>
-        <div class="input-format">
-            <input name='min' matInput placeholder="Minutes" [(ngModel)]='min' required>
-            <!-- <input name='min' #min="ngModel" matInput placeholder="Minutes" [(ngModel)]='min' required> -->
-        </div>
-        <!-- <mat-error *ngIf="min.errors?.required">This Field is required</mat-error> -->
-    </mat-form-field>
+    <form #timerForm="ngForm" (ngSubmit)='btnStartClicked(timerForm)'>
+        <mat-form-field class="example-full-width" appearance='outline'>
+            <mat-label>Minutes</mat-label>
+            <div class="input-format">
+                <input type='number' name='minutes' #minutes="ngModel" matInput placeholder="Minutes" ngModel required>
+            </div>
+            <mat-error *ngIf="minutes.errors?.required">Minutes are required!</mat-error>
+        </mat-form-field>
 
-    <mat-form-field class="example-full-width" appearance='outline'>
-        <mat-label>Seconds</mat-label>
-        <div class="input-format">
-            <input name='sec' matInput placeholder="Seconds" [(ngModel)]='sec' required>
-        </div>
-    </mat-form-field>
-    <button mat-raised-button class="btn-format" (click)='btnStartClicked()'>Start</button>
+        <mat-form-field class="example-full-width" appearance='outline'>
+            <mat-label>Seconds</mat-label>
+            <div class="input-format">
+                <input type='number' name='seconds' #seconds="ngModel" matInput placeholder="Seconds" ngModel required>
+            </div>
+            <mat-error *ngIf="seconds.errors?.required">Seconds are required!</mat-error>
+        </mat-form-field>
+        <button mat-raised-button class="btn-format">Start</button>
+    </form>
 </mat-card>
